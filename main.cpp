@@ -41,12 +41,11 @@ int mapToColor(int value, int min, int max) {
 void drawCells(int r, int g, int b) {
 	for (int i = 0; i < Y_CELLS; i++)
 		for (int j = 0; j < X_CELLS; j++) {
-			if (active_cells[i][j]) drawPixel(j, i, sf::Color(r, g, b,255));
+			if (active_cells[i][j]) drawPixel(j, i, sf::Color(r, g, b, 255));
 		}
 }
 int getFixedCoords(int pos, int max) {
-	return (pos > 0 ? (max - pos > 0 ? pos : pos % max)
-	                : (pos < 0 ? max - pos % max : 0));
+	return (pos >= max ? pos % max : (pos < 0 ? max + pos % max : pos));
 }
 
 int getNeighborsCount(int x_pos, int y_pos) {
