@@ -85,8 +85,7 @@ void getNewState() {
 	for (int i = 0; i < Y_CELLS; i++)
 		for (int j = 0; j < X_CELLS; j++) {
 			int neighboursCount = getNeighborsCount(j, i);
-			if (!active_cells[i][j]) next_state[i][j] = 0;
-			if (active_cells[i][j]) next_state[i][j] = 1;
+			next_state[i][j] = active_cells[i][j];
 			if ((neighboursCount > 3 || neighboursCount < 2) &&
 			    active_cells[i][j])
 				next_state[i][j] = 0;
@@ -106,11 +105,14 @@ void randIntColor(int &value, int &direction, int diff) {
 	} else
 		value += direction * offset;
 }
+int randPosNumber(int num) {
+	return rand() % abs(num);
+}
 int main() {
 	int R, G, B;
-	R = rand() % 256;
-	G = rand() % 256;
-	B = rand() % 256;
+	G = randPosNumber(256);
+	B = randPosNumber(256);
+	R = randPosNumber(256);
 	int RD, GD, BD;
 	RD = GD = BD = -1;
 	srand(time(NULL));
